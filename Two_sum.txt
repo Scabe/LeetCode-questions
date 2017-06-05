@@ -1,0 +1,30 @@
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        boolean flag = false;
+        int i = 0;
+        int j = 0;
+        for(i=0;i<nums.length-1;i++){
+            for(j=i+1;j<nums.length;j++){
+                if(target==nums[i]+nums[j]){
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag == true)
+            break;
+        }
+        int[] a={i,j};
+        return a;
+    }
+    public static void main(String args[]){
+        int[] nums = {2,7,11,15};
+        int target = 9;
+        System.out.println("Given nums = "+Arrays.toString(nums)+",target = "+target);
+        Solution solution = new Solution();
+        int[] arr = solution.twoSum(nums,target);
+        int i = arr[0];
+        int j = arr[1];
+        System.out.println("Because nums["+i+"] + nums["+j+"] = "+nums[i]+" + "+nums[j]+" = "+target);
+        System.out.println("return ["+i+","+j+"].");
+    }
+}
