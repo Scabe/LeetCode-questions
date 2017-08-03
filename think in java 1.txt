@@ -1,0 +1,31 @@
+package test;
+
+import java.util.Arrays;
+
+public class test1 {
+	public static void main(String[] Args){
+		int num=0;
+		int sum=0;
+		int from;
+		int val;
+		String[] a1,a2;
+		for(int i=10;i<100;i++){
+			from=Math.max(1000/i,i+1);
+			for(int j=from;j<100;j++){
+				val=i*j;
+				if(val%100==0||(val-i-j)%9!=0)
+					continue;
+				num++;
+				a1=String.valueOf(val).split("");
+				a2=(String.valueOf(i)+String.valueOf(j)).split("");
+				Arrays.sort(a1);
+				Arrays.sort(a2);
+				if(Arrays.equals(a1, a2)){
+					sum++;
+					System.out.println("ตฺ"+sum+"ื้"+i+"*"+j+"="+val);
+				}
+			}
+		}
+		System.out.println(num);
+	}
+}
