@@ -1,0 +1,41 @@
+ Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of favorite restaurants represented by strings.
+
+You need to help them find out their common interest with the least list index sum. If there is a choice tie between answers, output all of them with no order requirement. You could assume there always exists an answer. 
+
+Input:
+["Shogun", "Tapioca Express", "Burger King", "KFC"]
+["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"]
+Output: ["Shogun"]
+Explanation: The only restaurant they both like is "Shogun".
+
+Input:
+["Shogun", "Tapioca Express", "Burger King", "KFC"]
+["KFC", "Shogun", "Burger King"]
+Output: ["Shogun"]
+Explanation: The restaurant they both like and have the least index sum is "Shogun" with index sum 1 (0+1).
+
+
+public class Solution {
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        Map<String,Integer> map2 = new HashMap<String,Integer>();
+        List<String> res = new ArrayList<String>();
+        int min = list1.length+list2.length;
+        int count = 0;
+        for(int i = 0 ; i<list2.length;i++)
+            map2.put(list2[i],i);
+        for(int k = 0 ; k<list1.length;k++){
+            if(map2.containsKey(list1[k])){
+                count = k+map2.get(list1[k]);
+                if(count<=min){
+                    res.add(list1[k]);
+                    min = count;
+                }
+            }
+        }
+        String[] Res = new String[res.size()];
+        for(int j = 0 ;j<res.size();j++){
+            Res[j] = res.get(j);
+        }
+        return Res;
+    }
+}
