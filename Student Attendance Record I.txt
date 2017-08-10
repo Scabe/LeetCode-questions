@@ -1,0 +1,46 @@
+You are given a string representing an attendance record for a student. 
+The record only contains the following three characters:
+
+    'A' : Absent.
+    'L' : Late.
+    'P' : Present.
+
+A student could be rewarded if his attendance record doesn't contain more than one 'A' (absent) 
+or more than two continuous 'L' (late). 
+
+
+Example 1:
+
+Input: "PPALLP"
+Output: True
+
+Example 2:
+
+Input: "PPALLL"
+Output: False
+
+
+
+public class Solution {
+    public boolean checkRecord(String s) {
+        HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+        for(char c:s.toCharArray()){
+            if(map.containsKey(c))
+                map.put(c,map.get(c)+1);
+            else
+                map.put(c,1);
+            if(c!='L'){
+                if(map.containsKey('L')&&map.get('L')>2)
+                    return false;
+                map.put('L',0);
+            }
+        }
+        for(Map.Entry<Character,Integer> entry:map.entrySet()){
+            if(entry.getKey()=='A'&&entry.getValue()>1)
+                return false;
+            if(entry.getKey()=='L'&&entry.getValue()>2)
+                return false;
+        }
+        return true;
+    }
+}
